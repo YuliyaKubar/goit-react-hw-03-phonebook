@@ -1,0 +1,10 @@
+.input {
+    margin: 0 10px;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #B0E0E6;
+    border-color: #B0E0E6;
+    border-radius: 15px;
+}
