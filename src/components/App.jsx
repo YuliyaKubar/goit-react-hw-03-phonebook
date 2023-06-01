@@ -31,17 +31,24 @@ export class App extends Component {
     }
   }
 
-  addContact = ({ name, number }) => {
-    const duplicate = this.state.contacts.find(
-      contact => contact.name === name
-    );
-    if (duplicate) {
-      alert('Error!');
+  addContact = data => {
+    const contact = {
+      ...data,
+      id: nanoid(),
+    };
+
+    if (
+      this.state.contacts.some(
+        item => item.name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(`${contact.name} is already in contacts`);
       return;
     }
-    this.setState({
-      contacts: [...this.state.contacts, { id: nanoid(), name, number }],
-    });
+
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   changeFilter = e => {
